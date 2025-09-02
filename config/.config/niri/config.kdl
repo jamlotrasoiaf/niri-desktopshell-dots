@@ -105,8 +105,6 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    background-color "transparent"
-
     // Set gaps around windows in logical pixels.
     gaps 16
 
@@ -258,21 +256,19 @@ layout {
 // See the binds section below for more spawn examples.
 // This line starts waybar, a commonly used bar for Wayland compositors.
 
-spawn-at-startup "qs" "-c" "noctalia-shell"
-spawn-at-startup "sh" "-c" "swayidle -w timeout 600 'niri msg action power-off-monitors' timeout 300 'qs -c noctalia-shell ipc call lockScreen toggle' before-sleep 'qs -c noctalia-shell ipc call lockScreen toggle'"
-spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit"
-spawn-at-startup "xwayland-satellite" ":12"
-spawn-at-startup "jamesdsp" "--tray"
+spawn-sh-at-startup "qs -c noctalia-shell"
+spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' timeout 300 'qs -c noctalia-shell ipc call lockScreen toggle' before-sleep 'qs -c noctalia-shell ipc call lockScreen toggle'"
+spawn-sh-at-startup "wl-paste --watch cliphist store"
+spawn-sh-at-startup "/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit"
+spawn-sh-at-startup "jamesdsp --tray"
 
 // EDITOR=nano sudo visudo -f /etc/sudoers.d/bluetooth-restart
 // add this line: sunny ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bluetooth
-spawn-at-startup "sh" "-c" "systemctl --user stop pipewire wireplumber pipewire-pulse && sleep 1 && sudo systemctl restart bluetooth && sleep 1 && systemctl --user start pipewire wireplumber pipewire-pulse"
+spawn-sh-at-startup "systemctl --user stop pipewire wireplumber pipewire-pulse && sleep 1 && sudo systemctl restart bluetooth && sleep 1 && systemctl --user start pipewire wireplumber pipewire-pulse"
 
 prefer-no-csd
 
 environment {
-    DISPLAY ":12"
     XCURSOR_THEME "catppuccin-mocha-dark-cursors"
     XCURSOR_SIZE "24"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -286,8 +282,6 @@ environment {
     GDK_BACKEND "wayland,x11,*"
     SDL_VIDEODRIVER "wayland"
     CLUTTER_BACKEND "wayland,x11,*"
-    RUSTUP_HOME "/mnt/storage/rust/.rustup"
-    CARGO_HOME "/mnt/storage/rust/.cargo"
 }
 
 cursor {
@@ -384,8 +378,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+B { spawn "sh" "-c" "systemctl --user stop pipewire wireplumber pipewire-pulse && sleep 1 && sudo systemctl restart bluetooth && sleep 1 && systemctl --user start pipewire wireplumber pipewire-pulse"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn-sh "ghostty"; }
+    Mod+B { spawn-sh "systemctl --user stop pipewire wireplumber pipewire-pulse && sleep 1 && sudo systemctl restart bluetooth && sleep 1 && systemctl --user start pipewire wireplumber pipewire-pulse"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -395,38 +389,35 @@ binds {
     // The allow-when-locked=true property makes them work even when the session is locked.
 
     Mod+Shift+Space {
-      spawn "sh" "-c" "killall qs && qs -c noctalia-shell";
+      spawn-sh "killall qs && qs -c noctalia-shell";
     }
     Mod+A {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle";
+      spawn-sh "qs -c noctalia-shell ipc call launcher toggle";
     }
     Mod+V {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "clipboard";
+      spawn-sh "qs -c noctalia-shell ipc call launcher clipboard";
     }
     Mod+Slash {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "calculator";
+      spawn-sh "qs -c noctalia-shell ipc call launcher calculator";
     }
     XF86MonBrightnessUp allow-when-locked=true {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase";
+      spawn-sh "qs -c noctalia-shell ipc call brightness increase";
     }
     XF86MonBrightnessDown allow-when-locked=true {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease";
+      spawn-sh "qs -c noctalia-shell ipc call brightness decrease";
     }
     XF86AudioRaiseVolume allow-when-locked=true {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase";
+      spawn-sh "qs -c noctalia-shell ipc call volume increase";
     }
     XF86AudioLowerVolume allow-when-locked=true {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease";
+      spawn-sh "qs -c noctalia-shell ipc call volume decrease";
     }
     XF86AudioMute allow-when-locked=true {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput";
+      spawn-sh "qs -c noctalia-shell ipc call volume muteOutput";
     }
     XF86AudioMicMute allow-when-locked=true {
-      spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteInput";
+      spawn-sh "qs -c noctalia-shell ipc call volume muteInput";
     }
-
-
-
 
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
@@ -677,11 +668,6 @@ hotkey-overlay {
 window-rule {
     geometry-corner-radius 20
     clip-to-geometry true
-}
-
-layer-rule {
-    match namespace="^swww-daemon$"
-    place-within-backdrop true
 }
 
 layer-rule {
