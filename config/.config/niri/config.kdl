@@ -427,10 +427,10 @@ binds {
       spawn-sh "qs -c dms ipc call audio micmute";
     }
     XF86MonBrightnessUp hotkey-overlay-title="Increase Brightness" allow-when-locked=true {
-      spawn-sh "qs -c dms ipc call brightness increment 5";
+      spawn "qs" "-c" "dms" "ipc" "call" "brightness" "increment" "5" "";
     }
     XF86MonBrightnessDown hotkey-overlay-title="Decrease Brightness" allow-when-locked=true {
-      spawn-sh "qs -c dms ipc call brightness decrement 5";
+      spawn "qs" "-c" "dms" "ipc" "call" "brightness" "decrement" "5" "";
     }
     Mod+Shift+N hotkey-overlay-title="Toggle Night Mode" allow-when-locked=true {
       spawn-sh "qs -c dms ipc call night toggle";
