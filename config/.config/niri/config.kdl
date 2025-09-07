@@ -263,7 +263,7 @@ spawn-sh-at-startup "/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-p
 spawn-sh-at-startup "jamesdsp --tray"
 
 // EDITOR=nano sudo visudo -f /etc/sudoers.d/bluetooth-restart
-// add this line: sunny ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bluetooth
+// add this line: sunny ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl restart bluetooth
 spawn-sh-at-startup "systemctl --user stop pipewire wireplumber pipewire-pulse && sleep 1 && sudo systemctl restart bluetooth && sleep 1 && systemctl --user start pipewire wireplumber pipewire-pulse"
 
 prefer-no-csd
@@ -663,6 +663,10 @@ gestures {
 // Disable startup hotkey list
 hotkey-overlay {
     skip-at-startup
+}
+
+debug {
+  honor-xdg-activation-with-invalid-serial
 }
 
 window-rule {
