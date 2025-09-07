@@ -1,0 +1,42 @@
+{
+  "dark": {
+    "name": "Catppuccin",
+    "primary": "#b4befe",
+    "primaryText": "#cdd6f4",
+    "primaryContainer": "#a6adc8",
+    "secondary": "#f5c2e7",
+    "surface": "#1e1e2e",
+    "surfaceText": "#cdd6f4",
+    "surfaceVariant": "#313244",
+    "surfaceVariantText": "#a6adc8",
+    "surfaceTint": "#9399b2",
+    "background": "#1e1e2e",
+    "backgroundText": "#cdd6f4",
+    "outline": "#b4befe",
+    "surfaceContainer": "#1e1e2e",
+    "surfaceContainerHigh": "#313244",
+    "error": "#f38ba8",
+    "warning": "#f9e2af",
+    "info": "#74c7ec"
+  },
+  "light": {
+    "name": "Catppuccin",
+    "primary": "#7287fd",
+    "primaryText": "#4c4f69",
+    "primaryContainer": "#6c6f85",
+    "secondary": "#ea76cb",
+    "surface": "#eff1f5",
+    "surfaceText": "#4c4f69",
+    "surfaceVariant": "#ccd0da",
+    "surfaceVariantText": "#6c6f85",
+    "surfaceTint": "#7c7f93",
+    "background": "#eff1f5",
+    "backgroundText": "#4c4f69",
+    "outline": "#7287fd",
+    "surfaceContainer": "#eff1f5",
+    "surfaceContainerHigh": "#ccd0da",
+    "error": "#d20f39",
+    "warning": "#df8e1d",
+    "info": "#209fb5"
+  }
+}
