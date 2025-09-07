@@ -409,6 +409,9 @@ binds {
     Mod+S hotkey-overlay-title="Settings" {
       spawn-sh "qs -c dms ipc call settings toggle";
     }
+    Mod+P hotkey-overlay-title="Notepad" {
+      spawn "qs" "-c" "dms" "ipc" "call" "notepad" "toggle";
+    }
     Super+Alt+L hotkey-overlay-title="Lock Screen" {
       spawn-sh "qs -c dms ipc call lock lock";
     }
