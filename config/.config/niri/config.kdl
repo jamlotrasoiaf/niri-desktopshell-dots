@@ -257,7 +257,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 
 spawn-sh-at-startup "qs -c dms"
-spawn-sh-at-startup "swaybg -i ~/Pictures/walls/koi_blur.png"
+spawn-sh-at-startup "swaybg -i ~/Pictures/wallpapers/city-horizon.jpg"
 spawn-sh-at-startup "swayidle -w timeout 600 'niri msg action power-off-monitors' timeout 300 'qs -c dms ipc call lock lock' before-sleep 'qs -c dms ipc call lock lock'"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
 spawn-sh-at-startup "/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit"
